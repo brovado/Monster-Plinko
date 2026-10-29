@@ -21,7 +21,54 @@
 .panel.mobile-collapsed{align-self:flex-start}
 .panel .head{min-width:0}
 .panel .head h2{min-width:0}
-}</style>
+}
+/* Game-first desktop layout: keep the arena and launch controls in view. */
+@media(min-width:851px){
+ html,body{height:100%;min-height:0}
+ body{height:100dvh;overflow:hidden;display:flex;flex-direction:column}
+ header,main,footer{width:100%;max-width:1440px}
+ header{flex:0 0 auto;padding-top:8px;padding-bottom:6px;gap:10px;flex-wrap:nowrap}
+ .logo{width:34px;height:34px;border-radius:10px;font-size:19px}
+ .brand{gap:8px}
+ .brand h1{font-size:21px}
+ .hint{font-size:11px}
+ main{flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden;padding-top:0;padding-bottom:0}
+ .stats{flex:0 0 auto;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;margin:3px 0 7px}
+ .stat{padding:5px 10px;border-radius:9px}
+ .stat label{font-size:9px;letter-spacing:.06em}
+ .stat strong{font-size:17px;line-height:1.2}
+ .tabs{flex:0 0 auto;margin:0 0 7px;gap:6px}
+ .tabs button{padding:7px 10px}
+ .view{display:none;flex:1;min-height:0;overflow:auto;overscroll-behavior:contain}
+ .view.active{display:block}
+ #combat.view.active{overflow:hidden}
+ .combat-layout{height:100%;grid-template-columns:minmax(0,1fr) minmax(230px,310px);gap:10px;align-items:stretch}
+ .combat-layout>.side:first-child{grid-column:2;grid-row:1;grid-template-rows:auto minmax(0,1fr);gap:8px;min-height:0}
+ .combat-layout>.side:last-child{grid-column:1;grid-row:1;display:flex;min-height:0}
+ .combat-layout>.side:last-child>.panel:first-child{display:flex;flex-direction:column;flex:1;min-height:0;margin:0}
+ .combat-layout .combat-stage{flex:1;min-height:0;align-items:center;padding:5px;gap:8px;overflow:hidden}
+ .combat-layout .combat-stage canvas{height:min(57vh,calc(100dvh - 255px));width:auto;max-width:calc(100% - 75px);max-height:100%;align-self:center}
+ .charge-column{width:64px;flex-basis:64px;gap:8px;padding:6px 0}
+ .charge-icon{width:19px;flex-basis:19px;font-size:16px}
+ .charge-meter{gap:4px}
+ .charge-track{height:7px}
+ .combat-controls{order:-1;flex:0 0 auto;padding:7px 10px;gap:7px}
+ .combat-controls button{padding:8px 10px;min-height:36px}
+ .combat-stage{min-height:0}
+ .combat-layout .side .panel{margin:0}
+ .monster-picker .head{padding:9px 11px}
+ .monster-picker .head h2{font-size:13px}
+ .monster-picker .head button{padding:6px 8px;font-size:11px;white-space:nowrap}
+ .monster-picker-body{max-height:35vh;overflow:auto}
+ .monster-picker-body[hidden]{display:none}
+ .monster-picker .mob{padding:7px 8px}
+ .monster-picker .mob strong{font-size:12px}
+ .monster-picker .mob small,.monster-picker .mob .drop{font-size:10px}
+ .combat-layout .side:last-child>.panel:nth-child(2){min-height:0}
+ .combat-layout .side:last-child>.panel:nth-child(2) .feed{max-height:none}
+ footer{display:none}
+}
+</style>
 </head>
 <body>
 <header><div class="brand"><div class="logo">✦</div><div><div class="eyebrow">Build · Hunt · Improve</div><h1>MONSTER <span>PLINKO</span></h1></div></div><div class="hint">The workshop edits a blueprint. Combat runs a snapshot of that blueprint.</div><button class="menu-top-button" id="openmenu">☰ Main Menu</button></header>
@@ -41,9 +88,9 @@
 <div class="stat"><label>Blueprint level</label><strong class="mint" id="level">1</strong></div>
 <div class="stat"><label>Materials</label><strong id="materials">0</strong></div>
 </section>
-<nav class="tabs"><button class="active" data-view="workshop">⚒ Workshop</button><button data-view="character">♙ Character</button><button data-view="combat">⚔ Hunt & Combat</button></nav>
+<nav class="tabs"><button data-view="workshop">⚒ Workshop</button><button data-view="character">♙ Character</button><button class="active" data-view="combat">⚔ Hunt</button></nav>
 <section class="view" id="character"><div class="character-layout"><section class="panel character-sheet"><div class="head"><div><div class="eyebrow">Adventurer record</div><h2>Character Sheet</h2><div class="muted">Spend gold to permanently train your character. Attributes improve every hunt.</div></div><span class="chip">RPG · CORE STATS</span></div><div class="pad"><div class="character-identity"><div class="character-emblem">✦</div><div><strong>The Machine Hunter</strong><div class="muted">A growing legend of the First Forest</div><div class="character-level" id="characterlevel">Adventurer · Level 1</div></div></div><div class="attribute-grid" id="attributelist"></div><div class="section-rule"><h3>Derived Combat Statistics</h3><p class="muted">These values are calculated from your attributes and applied in combat.</p></div><div class="derived-grid" id="derivedstats"></div><div class="character-footnote">Training is permanent. Costs rise with each point invested. Your character stats apply to every machine blueprint.</div></div></section><aside class="panel character-guide"><div class="head"><h2>Build Guide</h2></div><div class="pad"><div class="guide-row"><b>STR</b><span><strong>Strength</strong><small>Raises damage from component abilities and cup hits.</small></span></div><div class="guide-row"><b>VIT</b><span><strong>Vitality</strong><small>Raises maximum HP and your chance to shrug off a lost ball.</small></span></div><div class="guide-row"><b>DEX</b><span><strong>Dexterity</strong><small>Adds balls as it grows and increases critical-hit chance.</small></span></div><div class="guide-row"><b>INT</b><span><strong>Intelligence</strong><small>Amplifies component ability damage.</small></span></div><div class="guide-row"><b>LCK</b><span><strong>Luck</strong><small>Improves gold rewards and bonus material drops.</small></span></div><div class="character-tip"><strong>Early build tip</strong><p>Vitality gives you room to survive; Dexterity eventually adds another ball to every volley. Strength and Intelligence are your direct damage path, while Luck compounds your income.</p></div><button class="wide" id="characterrefresh">Refresh character sheet</button></div></aside></div></section>
-<section class="view active" id="workshop">
+<section class="view" id="workshop">
 <div class="layout">
 <section class="panel"><div class="head"><div><h2>Machine Blueprint</h2><div class="muted">Precise 8 × 10 grid. Parts occupy multiple cells; springs are fixed to the map.</div></div><span class="chip" id="placedcount">3 parts</span></div>
 <div class="board"><div class="gridboard" id="workboard"></div><div class="boardnote"><span>Selected part = gold outline · Red springs are fixed hazards</span><span>Save applies the blueprint at a fresh combat round.</span></div></div>
@@ -53,10 +100,10 @@
 <section class="panel"><div class="head"><h2>Machine rules</h2></div><div class="pad muted">Positive components charge their own ability meter on impact. When full, the assigned effect fires. Wall springs and triangle springs add heat. A ball that overheats dies, costs 1 player HP, and returns to the tray.</div></section>
 </aside></div>
 </section>
-<section class="view" id="combat">
+<section class="view active" id="combat">
 <div class="layout combat-layout">
 <div class="side">
-<section class="panel"><div class="head"><div><h2 id="combatTitle">First Forest</h2><div class="muted">Choose a monster to hunt for its machine material.</div></div><span class="chip">8 monsters</span></div><div class="pad"><div class="monster-list" id="moblist"></div></div></section>
+<section class="panel monster-picker"><div class="head"><div><h2 id="combatTitle">First Forest</h2><div class="muted">Pick your next target when you want to change it.</div></div><button type="button" id="togglemonsters" aria-expanded="false">Choose monster ▾</button></div><div class="pad monster-picker-body" id="monsterpickerbody" hidden><div class="monster-list" id="moblist"></div></div></section>
 <section class="panel"><div class="head"><h2>Combat log</h2><span class="muted">Latest events</span></div><div class="feed" id="feed"></div></section>
 </div>
 <div class="side">
@@ -68,7 +115,7 @@
 </div></div>
 </section>
 </main>
-<nav class="bottom-nav" aria-label="Main navigation"><button class="active" data-view="workshop"><span class="nav-icon">⚒</span><span>Workshop</span></button><button data-view="character"><span class="nav-icon">♙</span><span>Character</span></button><button data-view="combat"><span class="nav-icon">⚔</span><span>Hunt</span></button></nav>
+<nav class="bottom-nav" aria-label="Main navigation"><button data-view="workshop"><span class="nav-icon">⚒</span><span>Workshop</span></button><button data-view="character"><span class="nav-icon">♙</span><span>Character</span></button><button class="active" data-view="combat"><span class="nav-icon">⚔</span><span>Hunt</span></button></nav>
 <footer><span>Prototype 0.4 · Precision workshop + combat snapshot</span><span>Progress and blueprint save locally in this browser</span></footer>
 <script>
 (()=>{'use strict';
@@ -185,7 +232,7 @@ $('saveaccount').addEventListener('click',saveAccount);
 $('loadlocal').addEventListener('click',loadLocalAccount);
 $('importaccount').addEventListener('click',()=>$('accountfile').click());
 $('accountfile').addEventListener('change',async e=>{const file=e.target.files&&e.target.files[0];if(!file)return;try{applyAccount(JSON.parse(await file.text()));menuStatus('Save file imported successfully.')}catch(err){menuStatus('Import failed: '+err.message)}e.target.value=''});
-$('restartaccount').addEventListener('click',restartAccount);
+$('togglemonsters').addEventListener('click',()=>{const body=$('monsterpickerbody'),open=body.hidden;body.hidden=!open;$('togglemonsters').textContent=open?'Hide monsters ▴':'Choose monster ▾';$('togglemonsters').setAttribute('aria-expanded',String(open))});$('restartaccount').addEventListener('click',restartAccount);
 $('saveblueprint').addEventListener('click',saveBlueprint);$('fight').addEventListener('click',launch);$('characterrefresh').addEventListener('click',renderCharacter);$('autofight').addEventListener('click',()=>{state.auto=!state.auto;$('autofight').textContent='Auto: '+(state.auto?'ON':'OFF');save()});$('newround').addEventListener('click',()=>{if(active){logEvent('Let the current volley resolve before starting a new round.');return}resetMonster();drawArena()});document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===b.dataset.view));document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===b.dataset.view));if(b.dataset.view==='combat')drawArena();if(b.dataset.view==='character')renderCharacter()}));
 function setupCompactPanels(){
  const mobile=window.matchMedia('(max-width: 520px)').matches;
