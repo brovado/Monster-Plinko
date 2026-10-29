@@ -72,7 +72,7 @@ const MOBS=[
 const MATERIALS=['Gel Cores','Tubes','Cloth','Wind Springs','Chitin'];
 const POS=['peg','bumper','peg','target','peg','booster','peg','wall','peg','bumper','peg','gate','peg','triangle','peg'];
 const SLOT_COUNT=35;
-const defaults={gold:90,hp:10,maxHp:10,round:1,machineLevel:1,materials:{'Gel Cores':2,'Tubes':2,'Cloth':1,'Wind Springs':2,'Chitin':2},unlocked:{bumper:['Arc Burst','Spark','Pulse Heal'],peg:['Spark','Tiny Shield','Coin Flick'],target:['Bullseye','Armor Break','Loot Burst'],booster:['Overdrive','Cool Current','Critical Rush'],gate:['Arcane Ward','Elemental Infusion','Heat Immunity'],wall:['Hazard'],triangle:['Hazard']},upgrades:{},blueprint:[],snapshot:[],selectedType:'bumper',selectedSlot:null,selectedMob:0,auto:true,roundKills:0};
+const defaults={gold:90,hp:10,maxHp:10,round:1,machineLevel:1,materials:{'Gel Cores':2,'Tubes':2,'Cloth':1,'Wind Springs':2,'Chitin':2},unlocked:{bumper:['Arc Burst'],peg:['Spark'],target:['Bullseye'],booster:['Overdrive'],gate:['Arcane Ward'],wall:['Hazard'],triangle:['Hazard']},upgrades:{},blueprint:[],snapshot:[],selectedType:'bumper',selectedSlot:null,selectedMob:0,auto:true,roundKills:0};
 let state={...defaults},balls=[],particles=[],log=[],active=false,completed=0,lost=0,volleyDamage=0,lastAuto=0,monster={hp:24,maxHp:24},roundIndex=1;
 function clone(x){return JSON.parse(JSON.stringify(x))}
 function load(){try{const s=JSON.parse(localStorage.getItem('monsterPlinkoV3')||'null');if(s)state={...defaults,...s,materials:{...defaults.materials,...s.materials},upgrades:{...s.upgrades},unlocked:{...defaults.unlocked,...s.unlocked}}}catch(e){}if(!state.blueprint||!state.blueprint.length)state.blueprint=starter();if(!state.snapshot||!state.snapshot.length)state.snapshot=clone(state.blueprint)}
