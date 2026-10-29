@@ -13,7 +13,15 @@
 .menu-card h2{font-size:clamp(28px,5vw,42px);line-height:1.05;letter-spacing:-.04em;margin:6px 0 12px}.menu-card p{color:var(--muted);max-width:460px}.menu-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px}.menu-actions button{min-height:48px;font-weight:800}.menu-actions .primary{grid-column:1/-1}.menu-status{min-height:18px;margin-top:14px;color:var(--mint);font-size:12px}.menu-small{font-size:11px;color:var(--muted);margin-top:14px}.menu-top-button{white-space:nowrap}
 .character-layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(260px,1fr);gap:16px;align-items:start}.character-sheet .head{align-items:flex-start}.character-identity{display:flex;align-items:center;gap:14px;padding:12px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(120deg,#252c3b,#1b202b);margin-bottom:16px}.character-emblem{width:54px;height:54px;display:grid;place-items:center;border-radius:12px;background:#403927;color:var(--gold);font-size:30px}.character-identity strong{font-size:18px}.character-level{display:inline-block;margin-top:7px;padding:4px 8px;border-radius:6px;background:#2d3c36;color:var(--mint);font-size:12px}.attribute-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.attribute-card{border:1px solid var(--line);border-radius:11px;padding:12px;background:var(--panel2);min-width:0}.attribute-top{display:flex;align-items:center;gap:9px}.attribute-code{width:35px;height:35px;display:grid;place-items:center;flex:none;border-radius:8px;background:#3b3548;color:var(--violet);font-weight:900}.attribute-name{font-weight:800}.attribute-value{margin-left:auto;color:var(--gold);font-size:22px;font-weight:900}.attribute-desc{min-height:34px;margin:9px 0;color:var(--muted);font-size:12px;line-height:1.4}.attribute-buy{width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px}.attribute-buy:disabled{opacity:.45}.section-rule{border-top:1px solid var(--line);margin-top:20px;padding-top:16px}.section-rule h3{margin:0 0 4px;font-size:16px}.section-rule p{margin:0 0 12px}.derived-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.derived-card{border:1px solid var(--line);background:#171c26;border-radius:9px;padding:10px;min-width:0}.derived-card span{display:block;color:var(--muted);font-size:11px}.derived-card strong{display:block;margin-top:5px;font-size:19px;color:var(--text);overflow-wrap:anywhere}.character-footnote{margin-top:14px;padding:10px;border-left:3px solid var(--gold);background:#28261f;color:var(--muted);font-size:12px;line-height:1.5}.guide-row{display:flex;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}.guide-row>b{width:36px;height:36px;flex:none;display:grid;place-items:center;border-radius:8px;background:#2d3444;color:var(--gold)}.guide-row span{min-width:0}.guide-row strong,.guide-row small{display:block}.guide-row small{margin-top:4px;color:var(--muted);font-size:12px;line-height:1.45}.character-tip{margin:16px 0;padding:13px;border-radius:10px;background:#2a302d;border:1px solid #43574a}.character-tip p{font-size:13px;color:var(--muted);line-height:1.5;margin:7px 0 0}
 @media(max-width:850px){.layout,.combat-layout,.character-layout{grid-template-columns:1fr}.combat-layout>.side:first-child,.combat-layout>.side:last-child{grid-column:1;grid-row:auto}.stats{grid-template-columns:repeat(3,1fr)}.hint{display:none}}@media(max-width:520px){.tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.tabs button{padding:9px 5px;font-size:12px}.attribute-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.attribute-card{padding:9px}.attribute-value{font-size:20px}.attribute-desc{font-size:11px;min-height:48px}.derived-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.character-identity{padding:9px}.character-emblem{width:44px;height:44px}header,main,footer{padding-left:11px;padding-right:11px}.brand h1{font-size:22px}.stats{grid-template-columns:repeat(2,1fr)}.stat:last-child{grid-column:span 2}.board{padding:7px}.gridboard{gap:3px}.slot{border-radius:5px}.head{padding:11px}.pad{padding:11px}}
-</style>
+
+.panel-toggle{display:none}
+@media(max-width:520px){
+.panel-toggle{display:inline-flex;align-items:center;justify-content:center;flex:none;margin-left:auto;padding:3px 8px;min-width:30px;border-radius:7px;background:#252c3a;color:var(--gold);font-size:15px;line-height:1.2}
+.panel.mobile-collapsed>:not(.head){display:none!important}
+.panel.mobile-collapsed{align-self:flex-start}
+.panel .head{min-width:0}
+.panel .head h2{min-width:0}
+}</style>
 </head>
 <body>
 <header><div class="brand"><div class="logo">✦</div><div><div class="eyebrow">Build · Hunt · Improve</div><h1>MONSTER <span>PLINKO</span></h1></div></div><div class="hint">The workshop edits a blueprint. Combat runs a snapshot of that blueprint.</div><button class="menu-top-button" id="openmenu">☰ Main Menu</button></header>
@@ -178,7 +186,43 @@ $('importaccount').addEventListener('click',()=>$('accountfile').click());
 $('accountfile').addEventListener('change',async e=>{const file=e.target.files&&e.target.files[0];if(!file)return;try{applyAccount(JSON.parse(await file.text()));menuStatus('Save file imported successfully.')}catch(err){menuStatus('Import failed: '+err.message)}e.target.value=''});
 $('restartaccount').addEventListener('click',restartAccount);
 $('saveblueprint').addEventListener('click',saveBlueprint);$('fight').addEventListener('click',launch);$('characterrefresh').addEventListener('click',renderCharacter);$('autofight').addEventListener('click',()=>{state.auto=!state.auto;$('autofight').textContent='Auto: '+(state.auto?'ON':'OFF');save()});$('newround').addEventListener('click',()=>{if(active){logEvent('Let the current volley resolve before starting a new round.');return}resetMonster();drawArena()});document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===b.dataset.view));if(b.dataset.view==='combat')drawArena();if(b.dataset.view==='character')renderCharacter()}));
-load();renderBoard();renderInspector();renderMobs();renderChargeMeters();resetMonster();updateStats();logEvent('Workshop online. Hunt monsters for materials to unlock machine mastery.');$('autofight').textContent='Auto: '+(state.auto?'ON':'OFF');requestAnimationFrame(frame);
+function setupCompactPanels(){
+ const mobile=window.matchMedia('(max-width: 520px)').matches;
+ document.querySelectorAll('.panel').forEach(panel=>{
+  const head=panel.querySelector(':scope > .head');
+  if(!head)return;
+  let toggle=head.querySelector('.panel-toggle');
+  if(!toggle){
+   toggle=document.createElement('button');
+   toggle.type='button';
+   toggle.className='panel-toggle';
+   toggle.setAttribute('aria-label','Show or hide panel');
+   toggle.textContent='⌄';
+   head.appendChild(toggle);
+   toggle.addEventListener('click',()=>{
+    const closed=panel.classList.toggle('mobile-collapsed');
+    toggle.textContent=closed?'⌄':'⌃';
+    toggle.setAttribute('aria-expanded',String(!closed));
+   });
+  }
+  if(mobile){
+   const heading=(head.innerText||'').toLowerCase();
+   const keepOpen=heading.includes('machine blueprint')||heading.includes('character sheet')||heading.includes('combat snapshot');
+   if(!panel.dataset.mobileInitialized){
+    panel.classList.toggle('mobile-collapsed',!keepOpen);
+    toggle.textContent=keepOpen?'⌃':'⌄';
+    toggle.setAttribute('aria-expanded',String(keepOpen));
+    panel.dataset.mobileInitialized='1';
+   }
+  }else{
+   panel.classList.remove('mobile-collapsed');
+   toggle.textContent='⌄';
+   toggle.setAttribute('aria-expanded','true');
+  }
+ });
+}
+window.addEventListener('resize',setupCompactPanels);
+load();renderBoard();renderInspector();renderMobs();renderChargeMeters();resetMonster();updateStats();setupCompactPanels();logEvent('Workshop online. Hunt monsters for materials to unlock machine mastery.');$('autofight').textContent='Auto: '+(state.auto?'ON':'OFF');requestAnimationFrame(frame);
 })();
 </script>
 </body>
