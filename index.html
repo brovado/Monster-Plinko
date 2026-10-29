@@ -68,6 +68,77 @@
  .combat-layout .side:last-child>.panel:nth-child(2) .feed{max-height:none}
  footer{display:none}
 }
+
+/* Full-screen game-first presentation: menus become foreground modes. */
+@media(min-width:521px){
+ html,body{width:100%;height:100%;min-height:0}
+ body{height:100dvh;overflow:hidden;display:block}
+ header{position:fixed;z-index:15;top:0;left:0;right:0;height:48px;max-width:none;padding:5px 16px;background:linear-gradient(180deg,#10131af5,#10131ac9);border-bottom:1px solid #39445a66;flex-wrap:nowrap}
+ .brand{gap:8px}.logo{width:31px;height:31px;font-size:18px}.brand h1{font-size:20px}.brand .eyebrow{font-size:8px}.hint{display:none}
+ .menu-top-button{padding:6px 10px;font-size:11px}
+ main{position:fixed;inset:48px 0 58px;max-width:none;width:100%;padding:0;overflow:hidden;display:block}
+ .stats{display:none}
+ .tabs{position:fixed;z-index:40;left:0;right:0;bottom:0;margin:0;padding:7px 14px;background:#111620f5;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+ .tabs button{padding:8px 12px;font-size:13px}
+ .view{display:none}
+ .view.active{display:block}
+ #combat.view.active{position:absolute;inset:0;overflow:hidden;padding:0;background:#101722}
+ .combat-layout{height:100%;display:flex;flex-direction:column;gap:0}
+ .combat-layout>.side:first-child{display:none!important}
+ .combat-layout>.side:last-child{display:flex;flex:1;min-height:0;width:100%}
+ .combat-layout>.side:last-child>.panel:first-child{display:flex;flex-direction:column;flex:1;min-height:0;margin:0;border-radius:0;border-left:0;border-right:0;background:transparent}
+ .combat-layout>.side:last-child>.panel:nth-child(2){display:none}
+ .combat-layout .combat-stage{flex:1;min-height:0;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:4px;background:radial-gradient(ellipse at 50% 40%,#1b2b43,#101722 72%);gap:14px}
+ .combat-layout .combat-stage canvas{height:100%;width:auto;max-width:calc(100% - 110px);max-height:100%;align-self:center;object-fit:contain}
+ .charge-column{width:82px;flex:0 0 82px;gap:12px;justify-content:center;padding:8px 0}
+ .combat-layout .panel>.head{flex:0 0 auto;padding:8px 16px;background:#161c28cc}
+ .combat-layout .panel>.pad{flex:0 0 auto;padding:7px 16px;background:#161c28}
+ .combat-layout .panel>.pad .row{display:none}
+ .combat-layout .panel>.pad .bar{display:none}
+ .combat-controls{flex:0 0 auto;order:5;padding:8px 14px;background:#111620;border-top:1px solid var(--line);gap:8px}
+ .combat-controls button{min-height:38px;max-width:260px}
+ .monster-picker .head{display:flex}
+ .monster-picker-body[hidden]{display:none}
+ .monster-picker-body:not([hidden]){position:absolute;z-index:35;top:48px;right:12px;width:min(390px,calc(100vw - 24px));max-height:55vh;overflow:auto;background:#1b202b;border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 60px #000b}
+ #workshop.view.active,#character.view.active{position:fixed;z-index:30;inset:48px 0 58px;overflow:auto;overscroll-behavior:contain;padding:12px max(16px,calc((100vw - 1380px)/2));background:radial-gradient(ellipse at 50% 0,#303956 0,#10131a 62%);border-top:1px solid #39445a}
+ #workshop .layout{grid-template-columns:minmax(0,1.6fr) minmax(280px,.8fr);align-items:start}
+ #workshop .gridboard{max-width:min(720px,100%);grid-template-rows:repeat(20,minmax(22px,1fr))}
+ #workshop .slot{min-height:22px}
+ #character .character-layout{max-width:1120px;margin:0 auto}
+ .head-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+ .return-game{background:linear-gradient(135deg,var(--gold),#f49b76);color:#241c18;border:0;font-weight:850;white-space:nowrap}
+ footer{display:none}
+}
+@media(max-width:520px){
+ header{position:relative;z-index:15}
+ main{inset:auto;position:relative}
+ .tabs{position:fixed;z-index:40;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;padding:7px 8px calc(7px + env(safe-area-inset-bottom));margin:0;background:rgba(19,23,32,.97);border-top:1px solid #3b4353}
+ .tabs button{border:0;border-radius:10px;background:transparent;padding:7px 3px;font-size:11px}
+ .tabs button.active{background:#3a3425;color:var(--gold)}
+ body[data-screen="combat"] main{padding-bottom:0}
+ #combat.view.active{display:block}
+ #combat .combat-layout{display:flex;flex-direction:column;height:100%;gap:0}
+ #combat .combat-layout>.side:first-child{display:none}
+ #combat .combat-layout>.side:last-child{display:flex;flex:1;min-height:0}
+ #combat .combat-layout>.side:last-child>.panel:first-child{display:flex;flex-direction:column;flex:1;min-height:0}
+ #combat .combat-layout>.side:last-child>.panel:nth-child(2){display:none}
+ #combat .combat-layout .combat-stage{flex:1;min-height:0;overflow:hidden;align-items:center;justify-content:center}
+ #combat .combat-layout .combat-stage canvas{height:100%;width:auto;max-width:calc(100% - 52px);max-height:100%;object-fit:contain}
+ #combat .charge-column{width:42px;flex-basis:42px;gap:7px}
+ #combat .combat-layout .panel>.head{padding:6px 9px}
+ #combat .combat-layout .panel>.pad{padding:5px 9px}
+ #combat .combat-layout .panel>.pad .row,#combat .combat-layout .panel>.pad .bar{display:none}
+ #combat .combat-controls{flex:0 0 auto;order:5;padding:6px;gap:5px}
+ #combat .combat-controls button{padding:8px 4px;font-size:10px;min-width:0}
+ .monster-picker .head{padding:7px 9px}
+ .monster-picker .head-actions{display:flex;gap:5px}
+ .monster-picker-body:not([hidden]){position:absolute;z-index:35;top:45px;left:8px;right:8px;max-height:45dvh;overflow:auto;background:#1b202b;border:1px solid var(--line);border-radius:10px;box-shadow:0 15px 40px #000b}
+ #workshop.view.active,#character.view.active{position:fixed;z-index:30;inset:0 0 calc(55px + env(safe-area-inset-bottom));overflow:auto;padding:8px 8px 14px;background:radial-gradient(ellipse at 50% 0,#303956 0,#10131a 62%)}
+ #workshop .head-actions,#character .head-actions{display:flex;align-items:center;gap:5px}
+ #workshop .return-game,#character .return-game{font-size:10px;padding:6px 7px}
+ #workshop .gridboard{max-width:100%;grid-template-rows:repeat(20,minmax(12px,1fr))}
+ .head-actions .chip{display:none}
+}
 </style>
 </head>
 <body>
@@ -89,10 +160,10 @@
 <div class="stat"><label>Materials</label><strong id="materials">0</strong></div>
 </section>
 <nav class="tabs"><button data-view="workshop">⚒ Workshop</button><button data-view="character">♙ Character</button><button class="active" data-view="combat">⚔ Hunt</button></nav>
-<section class="view" id="character"><div class="character-layout"><section class="panel character-sheet"><div class="head"><div><div class="eyebrow">Adventurer record</div><h2>Character Sheet</h2><div class="muted">Spend gold to permanently train your character. Attributes improve every hunt.</div></div><span class="chip">RPG · CORE STATS</span></div><div class="pad"><div class="character-identity"><div class="character-emblem">✦</div><div><strong>The Machine Hunter</strong><div class="muted">A growing legend of the First Forest</div><div class="character-level" id="characterlevel">Adventurer · Level 1</div></div></div><div class="attribute-grid" id="attributelist"></div><div class="section-rule"><h3>Derived Combat Statistics</h3><p class="muted">These values are calculated from your attributes and applied in combat.</p></div><div class="derived-grid" id="derivedstats"></div><div class="character-footnote">Training is permanent. Costs rise with each point invested. Your character stats apply to every machine blueprint.</div></div></section><aside class="panel character-guide"><div class="head"><h2>Build Guide</h2></div><div class="pad"><div class="guide-row"><b>STR</b><span><strong>Strength</strong><small>Raises damage from component abilities and cup hits.</small></span></div><div class="guide-row"><b>VIT</b><span><strong>Vitality</strong><small>Raises maximum HP and your chance to shrug off a lost ball.</small></span></div><div class="guide-row"><b>DEX</b><span><strong>Dexterity</strong><small>Adds balls as it grows and increases critical-hit chance.</small></span></div><div class="guide-row"><b>INT</b><span><strong>Intelligence</strong><small>Amplifies component ability damage.</small></span></div><div class="guide-row"><b>LCK</b><span><strong>Luck</strong><small>Improves gold rewards and bonus material drops.</small></span></div><div class="character-tip"><strong>Early build tip</strong><p>Vitality gives you room to survive; Dexterity eventually adds another ball to every volley. Strength and Intelligence are your direct damage path, while Luck compounds your income.</p></div><button class="wide" id="characterrefresh">Refresh character sheet</button></div></aside></div></section>
+<section class="view" id="character"><div class="character-layout"><section class="panel character-sheet"><div class="head"><div><div class="eyebrow">Adventurer record</div><h2>Character</h2><div class="muted">Train your hunter between runs.</div></div><div class="head-actions"><span class="chip">RPG</span><button type="button" class="return-game" data-return-game>← Return to game</button></div></div><div class="pad"><div class="character-identity"><div class="character-emblem">✦</div><div><strong>The Machine Hunter</strong><div class="muted">A growing legend of the First Forest</div><div class="character-level" id="characterlevel">Adventurer · Level 1</div></div></div><div class="attribute-grid" id="attributelist"></div><div class="section-rule"><h3>Derived Combat Statistics</h3><p class="muted">These values are calculated from your attributes and applied in combat.</p></div><div class="derived-grid" id="derivedstats"></div><div class="character-footnote">Training is permanent. Costs rise with each point invested. Your character stats apply to every machine blueprint.</div></div></section><aside class="panel character-guide"><div class="head"><h2>Build Guide</h2></div><div class="pad"><div class="guide-row"><b>STR</b><span><strong>Strength</strong><small>Raises damage from component abilities and cup hits.</small></span></div><div class="guide-row"><b>VIT</b><span><strong>Vitality</strong><small>Raises maximum HP and your chance to shrug off a lost ball.</small></span></div><div class="guide-row"><b>DEX</b><span><strong>Dexterity</strong><small>Adds balls as it grows and increases critical-hit chance.</small></span></div><div class="guide-row"><b>INT</b><span><strong>Intelligence</strong><small>Amplifies component ability damage.</small></span></div><div class="guide-row"><b>LCK</b><span><strong>Luck</strong><small>Improves gold rewards and bonus material drops.</small></span></div><div class="character-tip"><strong>Early build tip</strong><p>Vitality gives you room to survive; Dexterity eventually adds another ball to every volley. Strength and Intelligence are your direct damage path, while Luck compounds your income.</p></div><button class="wide" id="characterrefresh">Refresh character sheet</button></div></aside></div></section>
 <section class="view" id="workshop">
 <div class="layout">
-<section class="panel"><div class="head"><div><h2>Machine Blueprint</h2><div class="muted">Precise 8 × 10 grid. Parts occupy multiple cells; springs are fixed to the map.</div></div><span class="chip" id="placedcount">3 parts</span></div>
+<section class="panel"><div class="head"><div><h2>Machine Blueprint</h2><div class="muted">Edit your machine blueprint</div></div><div class="head-actions"><span class="chip" id="placedcount">3 parts</span><button type="button" class="return-game" data-return-game>← Return to game</button></div></div>
 <div class="board"><div class="gridboard" id="workboard"></div><div class="boardnote"><span>Selected part = gold outline · Red springs are fixed hazards</span><span>Save applies the blueprint at a fresh combat round.</span></div></div>
 <div class="pad"><div class="row"><strong>Component shop</strong><span class="muted">Unlock more slots and parts as you progress</span></div><div class="component-list" id="componentlist" style="margin-top:10px"></div><div class="row" style="margin-top:16px"><strong>Purchased storage</strong><span class="muted">Select a stored part, then place it</span></div><div id="storage" class="storage-grid" style="margin-top:8px"></div><button class="primary wide" id="saveblueprint" style="margin-top:12px">Save blueprint → Apply next combat round</button><p class="muted" id="blueprintstatus">Combat is using the starter blueprint.</p></div></section>
 <aside class="side">
@@ -103,7 +174,7 @@
 <section class="view active" id="combat">
 <div class="layout combat-layout">
 <div class="side">
-<section class="panel monster-picker"><div class="head"><div><h2 id="combatTitle">First Forest</h2><div class="muted">Pick your next target when you want to change it.</div></div><button type="button" id="togglemonsters" aria-expanded="false">Choose monster ▾</button></div><div class="pad monster-picker-body" id="monsterpickerbody" hidden><div class="monster-list" id="moblist"></div></div></section>
+<section class="panel monster-picker"><div class="head"><div><div class="eyebrow">Current hunt</div><h2 id="combatTitle">First Forest</h2></div><div class="head-actions"><button type="button" id="togglemonsters" aria-expanded="false">Choose monster ▾</button></div></div><div class="pad monster-picker-body" id="monsterpickerbody" hidden><div class="monster-list" id="moblist"></div></div></section>
 <section class="panel"><div class="head"><h2>Combat log</h2><span class="muted">Latest events</span></div><div class="feed" id="feed"></div></section>
 </div>
 <div class="side">
@@ -233,7 +304,7 @@ $('loadlocal').addEventListener('click',loadLocalAccount);
 $('importaccount').addEventListener('click',()=>$('accountfile').click());
 $('accountfile').addEventListener('change',async e=>{const file=e.target.files&&e.target.files[0];if(!file)return;try{applyAccount(JSON.parse(await file.text()));menuStatus('Save file imported successfully.')}catch(err){menuStatus('Import failed: '+err.message)}e.target.value=''});
 $('togglemonsters').addEventListener('click',()=>{const body=$('monsterpickerbody'),open=body.hidden;body.hidden=!open;$('togglemonsters').textContent=open?'Hide monsters ▴':'Choose monster ▾';$('togglemonsters').setAttribute('aria-expanded',String(open))});$('restartaccount').addEventListener('click',restartAccount);
-$('saveblueprint').addEventListener('click',saveBlueprint);$('fight').addEventListener('click',launch);$('characterrefresh').addEventListener('click',renderCharacter);$('autofight').addEventListener('click',()=>{state.auto=!state.auto;$('autofight').textContent='Auto: '+(state.auto?'ON':'OFF');save()});$('newround').addEventListener('click',()=>{if(active){logEvent('Let the current volley resolve before starting a new round.');return}resetMonster();drawArena()});document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===b.dataset.view));document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===b.dataset.view));if(b.dataset.view==='combat')drawArena();if(b.dataset.view==='character')renderCharacter()}));
+$('saveblueprint').addEventListener('click',saveBlueprint);$('fight').addEventListener('click',launch);$('characterrefresh').addEventListener('click',renderCharacter);$('autofight').addEventListener('click',()=>{state.auto=!state.auto;$('autofight').textContent='Auto: '+(state.auto?'ON':'OFF');save()});$('newround').addEventListener('click',()=>{if(active){logEvent('Let the current volley resolve before starting a new round.');return}resetMonster();drawArena()});function showView(view){document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===view));document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===view));document.body.dataset.screen=view;if(view==='combat')drawArena();if(view==='character')renderCharacter();if(view==='workshop'){renderBoard();renderInspector()}}document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>showView(b.dataset.view)));document.querySelectorAll('[data-return-game]').forEach(b=>b.addEventListener('click',()=>showView('combat')));
 function setupCompactPanels(){
  const mobile=window.matchMedia('(max-width: 520px)').matches;
  document.querySelectorAll('.panel').forEach(panel=>{
