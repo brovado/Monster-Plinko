@@ -10,6 +10,7 @@ Open [index.html](./index.html) locally, or enable GitHub Pages for this reposit
 
 - Automatic volleys, plus a manual **Launch volley now** button
 - Balls launch upward, ricochet through the board, gain charge from rune pegs, and descend into the collection tray
+- Seven collection baskets apply damage multipliers from 0.75× at the sides up to 1.00× in the center
 - Damage resolves after the volley is collected
 - Monsters grow tougher over time and award gold when defeated
 - Three upgrade tracks: volley capacity, ball impact, and rune mastery
