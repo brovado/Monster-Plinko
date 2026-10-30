@@ -102,6 +102,19 @@ Example concepts (illustrative, not final balance):
 
 Relics may be awarded for major quests, achievements, minibosses, bosses, or other exceptional milestones. A limited number of equipped relics is worth considering to preserve meaningful choices. The relic collection/discovery system can persist between campaigns, while relics equipped during a campaign reset with that campaign.
 
+### Implemented prototype foundation
+
+- Five relics are implemented, each tied to a machine interaction:
+  - **Starfall Lens (Target):** Target ability activations queue one extra ball for the next volley.
+  - **Heartwood Core (Bumper):** After a Bumper ability activates, the next three Bumper hits each restore 1 operator HP.
+  - **Stormglass Flywheel (Booster):** Booster activations build up to five momentum stacks per volley, adding 5% damage per stack to the triggering ball and extending its boost.
+  - **Mirror Gate (Gate):** Gate ability activations have a 20% chance to queue an extra ball for the next volley.
+  - **Prospector’s Knot (Peg):** Peg ability activations have a 25% chance to harvest one additional material from the current monster family.
+- Ordinary monster kills have a 3.5% relic discovery chance. A pity counter guarantees a discovery after 25 kills without one. A relic already found in the current run cannot drop again.
+- Up to three discovered run relics can be equipped at once. The Relics inventory tab shows each relic's effect and whether it is equipped, held in the current run, previously discovered, or undiscovered.
+- The discovery archive is stored separately in the browser so it survives reloads and a fresh account reset. Relics held and equipped for combat remain part of the saved run state.
+- Relic drops and effects are prototype foundations. Boss/quest reward tables, a proper campaign reset, and balance tuning remain future work.
+
 ## Campaign world and progression
 
 Each campaign has three zone tiers, with multiple map choices in the first two tiers.
