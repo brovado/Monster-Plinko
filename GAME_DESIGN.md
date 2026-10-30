@@ -79,6 +79,17 @@ The workshop becomes an operator's crafting and machine-development space. Its i
 
 The crafting system should connect monster farming directly to machine development. Recipes, upgrade costs, component tiers, and material sinks will be designed together so every family remains relevant.
 
+### Implemented prototype foundation
+
+- The five craftable core components are tied to their family materials: Bumper / Bulwark Plates, Peg / Burrow Tubes, Gate / Thread Silk, Booster / Gale Sacs, and Target / Verdant Cores.
+- Base fabrication currently costs 2 family materials plus a modest gold fee (Gate costs 1 Thread Silk).
+- Installed components can be refined from Tier I to Tier III. Each tier adds 15% component-ability damage.
+- Tier II costs 4 matching family materials and 45 gold; Tier III costs 8 matching family materials and 110 gold.
+- Tier II requires the first component-tree node; Tier III requires the second. This makes component specialization part of the refinement path.
+- Component-tree nodes and spell upgrades remain separate progression tracks. Their existing node effects, spell unlocks, and spell ranks complement physical component tiers.
+- Refinement applies to the five craftable core components. Fixed board hazards are not refinable.
+- These values are prototype balance values and should be revisited during campaign progression and difficulty balancing.
+
 ## Relics
 
 Relics are scarce, powerful, run-specific modifiers. They should alter how the machine behaves and create new build identities, rather than functioning as ordinary stat upgrades.
