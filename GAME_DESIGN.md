@@ -111,8 +111,11 @@ The campaign now has five selectable hunting areas across three tiers. Areas use
 - The Dune Warden (260 HP) and Hollow Colossus (620 HP) are selectable miniboss encounters. Defeating each permanently unlocks the next tier's first area.
 - The Ashen Reach contains four minion types. Defeat 20 Ashen Reach minions to reveal the Ashen Sovereign (1,800 HP), the campaign's final encounter.
 - Campaign area kill counts, defeated miniboss IDs, and completion status are stored in the regular run save and included in account exports.
-- Boss rewards use the existing monster reward/loot pipeline; the dedicated boss mechanics, final boss phases, encounter tuning, and full fresh-campaign reset remain future work.
-- Current thresholds and HP values are prototype balance values.
+- Bosses use a dedicated encounter-pressure loop rather than ordinary family specials. Spring impacts charge separate Machine and Operator threat tracks; each resolves after the player's volley when full.
+- The Dune Warden's Machine Breaker resets one component charge bank and its Operator strike deals 2 HP. The Hollow Colossus uses the same dual-threat structure with a 3 HP operator strike.
+- The Ashen Sovereign has two phases. Crossing 50% HP triggers Phase II, clears both pressure tracks, and increases their charge rate by 45%. Phase II's machine attack resets two component charge banks; its operator strike deals 4 HP, with a 2 HP fallback pressure hit when neither bar is full.
+- Boss HP uses a separate difficulty curve (Story 0.72×, Standard 1×, Veteran 1.35×, Nightmare 1.8×). Boss gold rewards use a separate multiplier (1.15×, 1.5×, 2×, 2.75× respectively).
+- These are first-pass tuning values and need playtesting against low-, mid-, and high-synergy machine builds.
 
 ### Implemented prototype foundation
 
