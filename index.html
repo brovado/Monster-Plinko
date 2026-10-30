@@ -605,6 +605,7 @@ let respawnRemaining=0,respawnUntil=0,respawnTimer=null;function completeRespawn
 $('openmenu').addEventListener('click',openMenu);
 $('continuegame').addEventListener('click',closeMenu);
 $('saveaccount').addEventListener('click',saveAccount);
+$('startoperation').addEventListener('click',startOperation);
 $('continuegame').addEventListener('click',closeMenu);
 $('importaccount').addEventListener('click',()=>$('accountfile').click());
 $('accountfile').addEventListener('change',async e=>{const file=e.target.files&&e.target.files[0];if(!file)return;try{applyAccount(JSON.parse(await file.text()));menuStatus('Save file imported successfully.')}catch(err){menuStatus('Import failed: '+err.message)}e.target.value=''});
