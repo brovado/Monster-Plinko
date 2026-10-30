@@ -307,6 +307,11 @@ main{min-height:0}
 @media(max-width:850px){.upgrade-columns{grid-template-columns:1fr}.upgrade-tree-body{padding:10px 12px}.skill-node{min-height:0;margin-bottom:20px}}
 @media(max-width:520px){.bottom-nav{grid-template-columns:repeat(5,minmax(0,1fr));gap:2px;padding:4px 4px calc(4px + env(safe-area-inset-bottom))}.bottom-nav button{padding:4px 0;font-size:8px;letter-spacing:-.02em}.bottom-nav button .nav-icon{font-size:16px}.view.active{padding-bottom:16px}.upgrade-columns{grid-template-columns:minmax(0,1fr)}.monster-charge{margin:8px 0;padding:7px}}
 
+
+/* Keep the fixed bottom navigation as the single mobile navigation row. */
+@media(max-width:520px){.progression-tabs{display:none!important}.bottom-nav{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important}.view.active{flex:1;min-height:0;overflow-y:auto!important;overscroll-behavior:contain}main{min-height:0;overflow:hidden}}
+@media(min-width:521px){.view.active{flex:1;min-height:0;overflow-y:auto!important;overscroll-behavior:contain}}
+
 </style>
 </head>
 <body>
