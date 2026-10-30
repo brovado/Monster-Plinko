@@ -1,0 +1,178 @@
+# Monster Plinko — Game Design Direction
+
+**Status:** Agreed design foundation  
+**Purpose:** Record the intended game structure and development priorities before major implementation work. This document describes the target game, not a claim that these systems are already implemented.
+
+## Core identity
+
+Monster Plinko is an incremental RPG about operating and upgrading a magical Plinko machine to hunt monsters. The machine is the main spectacle: balls bounce through components, charges build, effects trigger, and a carefully developed machine can produce spectacular, compounding results.
+
+The central promise:
+
+> Build the machine. Feed it monsters. Break its limits.
+
+The world exists to provide monsters and materials. Monsters provide the resources and challenges that let the operator build a more powerful machine.
+
+## The campaign loop
+
+1. **Choose an available area/map.**
+2. **Search instantly** to encounter a monster from that area's population. Searching is not a timed expedition or map-traversal activity.
+3. **Fight** using the Plinko machine. Ball interactions and component effects remain the centre of the experience.
+4. **Harvest** monster drops: family materials, rare materials, cores, and occasional special rewards.
+5. **Craft and improve** machine components, enhancements, spells, and other run equipment.
+6. Repeat, unlock more dangerous areas, defeat the campaign's two minibosses, then challenge the final boss.
+7. Complete the meta-game, claim permanent unlocks, and begin a fresh campaign.
+
+## Campaign reset and meta progression
+
+A completed meta-game resets the entire campaign. The next campaign starts fresh.
+
+### Reset each campaign
+
+- Operator's temporary stats, skills, and run-specific progression
+- Machine layout and installed components
+- Component upgrades and enhancements
+- Spells and their run-specific upgrades
+- Materials and crafting inventory
+- Relics acquired during that campaign
+- Zone, monster, and boss progress
+
+### Persist between campaigns
+
+- Unlocked operators/classes
+- Difficulty unlocks, tracked separately for each operator
+- Unlocked maps and campaign options
+- Relic discoveries/unlocks
+- Recipe and content unlocks intended as meta progression
+- Campaign achievements and milestones
+
+Permanent progression should primarily expand choices and possibilities, rather than simply inflate starting stats until earlier content becomes irrelevant.
+
+## Monster families and loot
+
+There are **five primary monster families**, each associated with one machine component. Each family is a targeted farming source for a corresponding family-specific material. The exact family names, component assignments, material names, and combat identities are to be designed in the monster/loot phase.
+
+Families should be mechanically meaningful, not merely visual skins. Their creatures can interact with, disrupt, or reward particular machine mechanics. Each family can contain common creatures, variants, elites, and a family miniboss or other notable encounter.
+
+There are also **story-level monster forces/families** that connect the five primary families and lead into the campaign's central conflict. These are not required to map one-to-one to machine components.
+
+### Loot principles
+
+- Every ordinary monster should contribute something useful to machine progression.
+- The five family materials are the primary targeted farming resources.
+- Rare drops, cores, and special rewards provide excitement and meaningful milestones.
+- Components should generally be crafted through understandable recipes, not bought from a conventional generic parts shop.
+- Random drops can provide rare variants, special enhancements, or exciting shortcuts, but players should usually know which monsters to hunt for a desired resource.
+- Avoid loot that accumulates without a clear use in building or improving the machine.
+
+## Workshop, inventory, and crafting
+
+The conventional buy-parts shop is intended to be removed or fundamentally replaced.
+
+The workshop becomes an operator's crafting and machine-development space. Its inventory should distinguish between:
+
+- **Components:** Physical machine pieces installed on the board.
+- **Enhancements:** Improvements to components.
+- **Spells:** Abilities assigned to components.
+- **Materials:** Resources harvested from monsters and used in recipes.
+- **Relics:** Rare effects that fundamentally modify game rules.
+
+The crafting system should connect monster farming directly to machine development. Recipes, upgrade costs, component tiers, and material sinks will be designed together so every family remains relevant.
+
+## Relics
+
+Relics are scarce, powerful, run-specific modifiers. They should alter how the machine behaves and create new build identities, rather than functioning as ordinary stat upgrades.
+
+Example concepts (illustrative, not final balance):
+- A Target can generate an additional ball when its charge reaches maximum.
+- After a Bumper charge activates, bumper hits restore operator health for a short duration.
+- Booster activations can build stacking momentum during a volley.
+- Gate activations can occasionally duplicate a ball.
+
+Relics may be awarded for major quests, achievements, minibosses, bosses, or other exceptional milestones. A limited number of equipped relics is worth considering to preserve meaningful choices. The relic collection/discovery system can persist between campaigns, while relics equipped during a campaign reset with that campaign.
+
+## Campaign world and progression
+
+Each campaign has three zone tiers, with multiple map choices in the first two tiers.
+
+### Tier 1 — Frontier
+- Forest
+- Desert
+
+### Tier 2 — Deep Wilds
+- Mountain
+- Cave
+
+### Tier 3 — Boss territory
+- A dedicated final-region map containing the boss's minions.
+- The player defeats a required number of minions to draw out/unlock the final boss.
+
+Maps within a tier should offer different monster populations, material opportunities, and farming decisions—not merely different scenery.
+
+The campaign contains:
+1. A Tier 1 miniboss that tests whether the player has established a functional machine.
+2. A Tier 2 miniboss that tests whether the player has developed meaningful synergies.
+3. A Tier 3 final boss, unlocked after enough of its minions have been defeated.
+
+## Boss design
+
+The final boss is intended to be genuinely difficult and should demand a well-developed, high-synergy machine. It should not be balanced merely by giving it an enormous health pool.
+
+The final encounter has **two phases**:
+- **Phase 1:** Hard but manageable, giving the player room to operate and build momentum.
+- **Phase 2:** A dramatic escalation—the “oh no, I may not survive this” phase—with significantly greater pressure.
+
+The boss can have multiple independent charge bars. Each bar represents a distinct threat or mechanic, such as:
+- Disabling or disrupting a machine component
+- Damaging or weakening the operator
+- Interfering with ball movement, charges, or machine operation
+
+Charge bars should force build and survival decisions. A high-damage machine that neglects every defensive or utility option should be vulnerable. The boss should punish incomplete builds, not merely low stats.
+
+The encounter should be the examination of the machine the player has built. Defeating it should feel like a payoff for the campaign's progression and synergies.
+
+## Operators and difficulty
+
+The meta-game includes operator/class selection and difficulty selection.
+
+- Operators have distinct starting advantages and build tendencies, but should not lock the player into one rigid build.
+- Difficulty unlocks are tracked per operator.
+- Higher difficulties should introduce meaningful changes: enemy abilities, encounter modifiers, elite variants, material/drop adjustments, or other new pressures—not only inflated monster health.
+- Maps and other campaign options may unlock through meta progression and operator-specific accomplishments.
+
+Possible operator identities (examples only): Engineer (component crafting/upgrades), Arcanist (spell effects), Artificer (material yield and specialization), Juggernaut (survival), Gambler (critical/random effects).
+
+## Progression cadence
+
+The game should offer overlapping goals at several timescales:
+
+| Timescale | Desired reward |
+|---|---|
+| Seconds | Satisfying ball interactions and component triggers |
+| Minutes | Monster kills, drops, and visible machine upgrades |
+| 15–30 minutes | Recipes, variants, and area unlocks |
+| 1–2 hours | Major upgrades, relics, and minibosses |
+| Several hours | Final-boss preparation and high-synergy builds |
+| Campaign completion | Permanent unlocks and a fresh campaign with new possibilities |
+
+## Development priorities
+
+Build the connective systems in this order:
+
+1. **Monster families and loot** — define the five component-linked families, their material drops, combat identities, and story-level connections.
+2. **Inventory and crafting workshop** — replace conventional part purchasing with a coherent RPG inventory and crafting flow.
+3. **Component recipes and upgrades** — connect family materials to component creation, enhancement, and progression.
+4. **Relic system** — implement rare, transformative, run-specific modifiers and their unlock/discovery rules.
+5. **Campaign and zone progression** — implement three tiers, map choices, monster pools, miniboss gates, and final-zone minion threshold.
+6. **Operator classes and difficulty unlocks** — implement fresh campaign selection and operator-specific meta progression.
+7. **Boss encounters and balancing** — implement the two minibosses, two-phase final boss, multiple charge mechanics, and tune the campaign around the final challenge.
+
+## Design guardrails
+
+- Keep the Plinko machine and its live combat as the main event.
+- Monster search is instant; do not turn the game into a map-traversal or timed-expedition game.
+- Preserve the incremental satisfaction of steadily improving a build and then reaching spectacular, compounding interactions.
+- Make monster drops feed machine upgrades; avoid disconnected currencies and loot.
+- Make choices and synergies matter. Avoid relying on bigger numbers as the only form of progression.
+- The final boss is the campaign's destination. Endless play may exist as an optional post-campaign mode, not the primary campaign objective.
+- This document is a target design. Existing prototype code may not yet implement these systems.
