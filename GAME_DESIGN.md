@@ -79,6 +79,29 @@ The workshop becomes an operator's crafting and machine-development space. Its i
 
 The crafting system should connect monster farming directly to machine development. Recipes, upgrade costs, component tiers, and material sinks will be designed together so every family remains relevant.
 
+### Operator classes and campaign difficulty prototype
+
+Four selectable operator identities now define a run's combat/economy specialty:
+
+- **Engineer — Machine Specialist:** +12% machine damage and 10% fabrication-fee discount.
+- **Scavenger — Salvage Expert:** +15 percentage points to bonus-material discovery chance and +10% gold rewards.
+- **Gambler — Risk Taker:** +10 percentage points critical chance and 1.75× critical damage (instead of the standard 1.5×).
+- **Guardian — Ironbound:** +8 maximum HP and +10 percentage points guard chance.
+
+Four campaign difficulty settings scale monster HP and gold/XP rewards:
+
+| Difficulty | Monster HP | Gold and XP |
+|---|---:|---:|
+| Story | 0.70× | 0.75× |
+| Standard | 1.00× | 1.00× |
+| Veteran | 1.50× | 1.60× |
+| Nightmare | 2.25× | 2.50× |
+
+- Operator and difficulty selections are saved with the current run and included in account export/import.
+- Selections can be changed between volleys; the currently selected monster is refreshed immediately to the selected difficulty.
+- Existing saves default to Engineer and Standard when these fields are absent.
+- These are prototype operator perks and balance values. Operator-specific campaign completion records, unlockable operators, difficulty unlock ladders, and fresh-campaign reset rules remain future work.
+
 ### Campaign and zone progression prototype
 
 The campaign now has five selectable hunting areas across three tiers. Areas use instant monster selection; there is no travel timer or map traversal. The Plinko machine remains the combat loop.
