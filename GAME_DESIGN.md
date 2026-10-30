@@ -79,28 +79,21 @@ The workshop becomes an operator's crafting and machine-development space. Its i
 
 The crafting system should connect monster farming directly to machine development. Recipes, upgrade costs, component tiers, and material sinks will be designed together so every family remains relevant.
 
-### Operator classes and campaign difficulty prototype
+### Meta profile, operation slots, and campaign selection
 
-Four selectable operator identities now define a run's combat/economy specialty:
+Operator and difficulty selection belongs to the main-menu meta layer, not the in-operation Character screen.
 
-- **Engineer — Machine Specialist:** +12% machine damage and 10% fabrication-fee discount.
-- **Scavenger — Salvage Expert:** +15 percentage points to bonus-material discovery chance and +10% gold rewards.
-- **Gambler — Risk Taker:** +10 percentage points critical chance and 1.75× critical damage (instead of the standard 1.5×).
-- **Guardian — Ironbound:** +8 maximum HP and +10 percentage points guard chance.
+- The main menu is the campaign command hub. It supports resuming a save, loading a slot, starting a new operation, saving the active slot, and importing/exporting a portable backup.
+- Three independent operation save slots are available. Each slot stores its own operator, difficulty, character progression, machine, inventory, relics, and campaign state. Gameplay autosaves to the active slot; the explicit save action also downloads a JSON backup.
+- Starting a new operation requires selecting a destination slot, an unlocked operator, and a difficulty unlocked for that operator. Replacing a populated slot requires confirmation.
+- A separate permanent meta profile stores operator unlocks, each operator's difficulty ladder, and campaign completion records. It is not reset when a new operation begins.
+- Existing single-save browser data migrates into Slot 1. Existing operator/difficulty choices are retained and registered as unlocked for that legacy operation.
+- Engineer is initially available with Story and Standard. Scavenger unlocks by defeating the Dune Warden; Gambler unlocks by defeating the Hollow Colossus; Guardian unlocks by completing the campaign. Newly unlocked operators begin with Story difficulty.
+- Difficulty unlocks are tracked independently for each operator: completing Story unlocks Standard; completing Standard unlocks Veteran; completing Veteran unlocks Nightmare. The final boss must be defeated to record a campaign completion and advance this ladder.
+- The Character screen is now limited to in-operation attributes and derived statistics. Operator and difficulty cannot be changed from inside a running operation.
+- The relic discovery archive remains separately persisted and is not tied to an individual operation slot.
 
-Four campaign difficulty settings scale monster HP and gold/XP rewards:
-
-| Difficulty | Monster HP | Gold and XP |
-|---|---:|---:|
-| Story | 0.70× | 0.75× |
-| Standard | 1.00× | 1.00× |
-| Veteran | 1.50× | 1.60× |
-| Nightmare | 2.25× | 2.50× |
-
-- Operator and difficulty selections are saved with the current run and included in account export/import.
-- Selections can be changed between volleys; the currently selected monster is refreshed immediately to the selected difficulty.
-- Existing saves default to Engineer and Standard when these fields are absent.
-- These are prototype operator perks and balance values. Operator-specific campaign completion records, unlockable operators, difficulty unlock ladders, and fresh-campaign reset rules remain future work.
+The four operator perks and difficulty multipliers remain prototype balance values as described below.
 
 ### Campaign and zone progression prototype
 
