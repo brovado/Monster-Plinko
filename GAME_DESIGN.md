@@ -79,6 +79,25 @@ The workshop becomes an operator's crafting and machine-development space. Its i
 
 The crafting system should connect monster farming directly to machine development. Recipes, upgrade costs, component tiers, and material sinks will be designed together so every family remains relevant.
 
+### Campaign and zone progression prototype
+
+The campaign now has five selectable hunting areas across three tiers. Areas use instant monster selection; there is no travel timer or map traversal. The Plinko machine remains the combat loop.
+
+| Tier | Area | Unlock |
+|---|---|---|
+| I | First Forest | Available at campaign start |
+| I | Glasswind Desert | Defeat 15 creatures in First Forest |
+| II | Ironroot Mountain | Defeat the Dune Warden miniboss in Glasswind Desert |
+| II | Hollowdeep Cave | Defeat 15 creatures in Ironroot Mountain |
+| III | The Ashen Reach | Defeat the Hollow Colossus miniboss in Hollowdeep Cave |
+
+- Each area has its own four-monster population, with family-linked material drops retained.
+- The Dune Warden (260 HP) and Hollow Colossus (620 HP) are selectable miniboss encounters. Defeating each permanently unlocks the next tier's first area.
+- The Ashen Reach contains four minion types. Defeat 20 Ashen Reach minions to reveal the Ashen Sovereign (1,800 HP), the campaign's final encounter.
+- Campaign area kill counts, defeated miniboss IDs, and completion status are stored in the regular run save and included in account exports.
+- Boss rewards use the existing monster reward/loot pipeline; the dedicated boss mechanics, final boss phases, encounter tuning, and full fresh-campaign reset remain future work.
+- Current thresholds and HP values are prototype balance values.
+
 ### Implemented prototype foundation
 
 - The five craftable core components are tied to their family materials: Bumper / Bulwark Plates, Peg / Burrow Tubes, Gate / Thread Silk, Booster / Gale Sacs, and Target / Verdant Cores.
